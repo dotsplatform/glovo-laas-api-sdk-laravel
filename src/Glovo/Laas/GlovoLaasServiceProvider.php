@@ -36,11 +36,11 @@ class GlovoLaasServiceProvider extends ServiceProvider
 
         $this->app->bind(GlovoConnector::class, function () {
             return new GlovoConnector(
-                GlovoAuthDTO::make(
-                    clientId: config('glovo-laas.auth.clientId'),
-                    clientSecret: config('glovo-laas.auth.clientSecret'),
-                ),
-                config('glovo-laas.stageEnv'),
+                GlovoAuthDTO::fromArray([
+                    'clientId' => config('glovo-laas.auth.clientId'),
+                    'clientSecret' => config('glovo-laas.auth.clientSecret'),
+                ]),
+                (bool) config('glovo-laas.stageEnv'),
             );
         });
     }
