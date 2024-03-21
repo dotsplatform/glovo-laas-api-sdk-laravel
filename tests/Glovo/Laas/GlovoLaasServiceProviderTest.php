@@ -16,6 +16,7 @@ class GlovoLaasServiceProviderTest extends TestCase
 
     protected function defineEnvironment($app): void
     {
+        $app['config']->set('glovo-laas.stageEnv', true);
         $app['config']->set('glovo-laas.auth.clientId', 'SOME_CLIENT_ID');
         $app['config']->set('glovo-laas.auth.clientSecret', 'SOME_CLIENT_SECRET');
     }

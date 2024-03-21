@@ -39,7 +39,8 @@ class GlovoLaasServiceProvider extends ServiceProvider
                 GlovoAuthDTO::make(
                     clientId: config('glovo-laas.auth.clientId'),
                     clientSecret: config('glovo-laas.auth.clientSecret'),
-                )
+                ),
+                config('glovo-laas.stageEnv'),
             );
         });
     }

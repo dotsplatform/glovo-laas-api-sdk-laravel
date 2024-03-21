@@ -2,7 +2,7 @@
 
 return [
 
-    'stageEnv' => false,
+    'stageEnv' => env('GLOVO_STAGE_ENV', true),
 
     'max_retries' => 3,
 
