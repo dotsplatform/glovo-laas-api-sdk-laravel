@@ -7,8 +7,8 @@
 
 namespace Dots\Glovo\Laas\Client\Responses\Items;
 
-use Dots\Glovo\Laas\Client\Resources\Items\PackagingTypes;
 use Dots\Glovo\Laas\Client\Responses\GlovoResponseDTO;
+use Dots\Glovo\Partner\Client\Resources\Items\PackagingTypes;
 
 class GetPackagingTypesResponseDTO extends GlovoResponseDTO
 {
