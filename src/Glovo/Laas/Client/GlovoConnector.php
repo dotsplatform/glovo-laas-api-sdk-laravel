@@ -9,6 +9,7 @@ namespace Dots\Glovo\Laas\Client;
 
 use Dots\Glovo\Laas\Client\DTO\GlovoAuthDTO;
 use Dots\Glovo\Laas\Client\Exceptions\GlovoException;
+use Dots\Glovo\Laas\Client\Requests\Addresses\GetAddressesRequest;
 use Dots\Glovo\Laas\Client\Requests\AuthenticateRequest;
 use Dots\Glovo\Laas\Client\Requests\Orders\CancelOrderRequest;
 use Dots\Glovo\Laas\Client\Requests\Orders\CreateOrderRequest;
@@ -28,6 +29,7 @@ use Dots\Glovo\Laas\Client\Requests\Webhooks\GetWebhooksListRequest;
 use Dots\Glovo\Laas\Client\Requests\Webhooks\RegisterWebhookRequest;
 use Dots\Glovo\Laas\Client\Requests\Webhooks\Simulate\SimulateWebhookRequest;
 use Dots\Glovo\Laas\Client\Responses\ErrorResponseDTO;
+use Dots\Glovo\Laas\Client\Responses\GetAddressesResponseDTO;
 use Dots\Glovo\Laas\Client\Responses\GlovoOAuthResponse;
 use Dots\Glovo\Laas\Client\Responses\OrderCourierContactResponseDTO;
 use Dots\Glovo\Laas\Client\Responses\OrderCourierPositionResponseDTO;
@@ -37,8 +39,6 @@ use Dots\Glovo\Laas\Client\Responses\ValidateOrderResponseDTO;
 use Dots\Glovo\Laas\Client\Responses\WebhookResponseDTO;
 use Dots\Glovo\Laas\Client\Responses\WebhooksListResponseDTO;
 use RuntimeException;
-use Saloon\Exceptions\Request\FatalRequestException;
-use Saloon\Exceptions\Request\RequestException;
 use Saloon\Http\Connector;
 use Saloon\Http\Response;
 use Saloon\Traits\Plugins\AlwaysThrowOnErrors;
@@ -215,6 +215,16 @@ class GlovoConnector extends Connector
         return $this->send(new AuthenticateRequest(
             $this->authDto,
         ))->dto();
+    }
+
+    /**
+     * @throws GlovoException
+     */
+    public function getAddresses(): GetAddressesResponseDTO
+    {
+        $this->authenticateRequests();
+
+        return $this->send(new GetAddressesRequest())->dto();
     }
 
     public function resolveBaseUrl(): string
