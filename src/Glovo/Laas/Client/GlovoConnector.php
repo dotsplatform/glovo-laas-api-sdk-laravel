@@ -23,6 +23,10 @@ use Dots\Glovo\Laas\Client\Requests\Orders\Simulate\SimulateFailedDeliveryReques
 use Dots\Glovo\Laas\Client\Requests\Orders\Simulate\SimulateSuccessfulDeliveryRequest;
 use Dots\Glovo\Laas\Client\Requests\Orders\ValidateOrderRequest;
 use Dots\Glovo\Laas\Client\Requests\Orders\WorkingAreaRequest;
+use Dots\Glovo\Laas\Client\Requests\Quotes\ConfirmQuoteRequest;
+use Dots\Glovo\Laas\Client\Requests\Quotes\CreateQuoteRequest;
+use Dots\Glovo\Laas\Client\Requests\Quotes\DTO\ConfirmQuoteDTO;
+use Dots\Glovo\Laas\Client\Requests\Quotes\DTO\CreateQuoteDTO;
 use Dots\Glovo\Laas\Client\Requests\Webhooks\DeleteWebhookRequest;
 use Dots\Glovo\Laas\Client\Requests\Webhooks\DTO\RegisterWebhookDTO;
 use Dots\Glovo\Laas\Client\Requests\Webhooks\GetWebhooksListRequest;
@@ -35,6 +39,7 @@ use Dots\Glovo\Laas\Client\Responses\OrderCourierContactResponseDTO;
 use Dots\Glovo\Laas\Client\Responses\OrderCourierPositionResponseDTO;
 use Dots\Glovo\Laas\Client\Responses\OrderResponseDTO;
 use Dots\Glovo\Laas\Client\Responses\OrderStatusHistoryResponseDTO;
+use Dots\Glovo\Laas\Client\Responses\QuoteResponseDTO;
 use Dots\Glovo\Laas\Client\Responses\ValidateOrderResponseDTO;
 use Dots\Glovo\Laas\Client\Responses\WebhookResponseDTO;
 use Dots\Glovo\Laas\Client\Responses\WebhooksListResponseDTO;
@@ -84,6 +89,26 @@ class GlovoConnector extends Connector
         $this->authenticateRequests();
 
         return $this->send(new WorkingAreaRequest())->dto();
+    }
+
+    /**
+     * @throws GlovoException
+     */
+    public function createQuote(CreateQuoteDTO $dto): QuoteResponseDTO
+    {
+        $this->authenticateRequests();
+
+        return $this->send(new CreateQuoteRequest($dto))->dto();
+    }
+
+    /**
+     * @throws GlovoException
+     */
+    public function confirmQuote(string $quoteId, ConfirmQuoteDTO $dto): OrderResponseDTO
+    {
+        $this->authenticateRequests();
+
+        return $this->send(new ConfirmQuoteRequest($quoteId, $dto, $this->stageEnv))->dto();
     }
 
     /**
