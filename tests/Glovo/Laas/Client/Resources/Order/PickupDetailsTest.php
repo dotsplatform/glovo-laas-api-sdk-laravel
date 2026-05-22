@@ -38,6 +38,7 @@ class PickupDetailsTest extends TestCase
             [
                 [
                     'rawAddress' => '123 Main St',
+                    'formattedAddress' => null,
                     'cityName' => 'New York',
                     'country' => 'USA',
                     'postalCode' => '10001',
@@ -56,6 +57,7 @@ class PickupDetailsTest extends TestCase
             [
                 [
                     'rawAddress' => '456 Elm St',
+                    'formattedAddress' => null,
                     'cityName' => 'Los Angeles',
                     'country' => 'USA',
                     'postalCode' => '90001',

@@ -11,9 +11,11 @@ use Dots\Data\DTO;
 
 class Address extends DTO
 {
-    protected string $rawAddress;
+    protected ?string $rawAddress;
 
-    protected string $cityName;
+    protected ?string $formattedAddress;
+
+    protected ?string $cityName;
 
     protected ?string $country;
 
@@ -27,12 +29,17 @@ class Address extends DTO
 
     protected ?Coordinates $coordinates;
 
-    public function getRawAddress(): string
+    public function getRawAddress(): ?string
     {
         return $this->rawAddress;
     }
 
-    public function getCityName(): string
+    public function getFormattedAddress(): ?string
+    {
+        return $this->formattedAddress;
+    }
+
+    public function getCityName(): ?string
     {
         return $this->cityName;
     }
