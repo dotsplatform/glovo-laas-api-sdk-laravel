@@ -40,6 +40,7 @@ class CreateOrderDTOTest extends TestCase
         return array_merge([
             'address' => [
                 'cityName' => 'Kyiv',
+                'formattedAddress' => 'Tarasa Shevchenko Blvd, 16, Kyiv, Ukraine, 02000',
                 'country' => 'Ukraine',
                 'rawAddress' => 'Tarasa Shevchenko Blvd, 16, Kyiv, Ukraine, 02000',
                 'postalCode' => null,
@@ -50,7 +51,6 @@ class CreateOrderDTOTest extends TestCase
                     'latitude' => 50.4508,
                     'longitude' => 30.5233,
                 ],
-
             ],
             'contact' => [
                 'name' => 'Yehor',
@@ -63,6 +63,7 @@ class CreateOrderDTOTest extends TestCase
                 'pickupTime' => '2021-09-30T12:00:00+03:00',
                 'address' => [
                     'cityName' => 'Kyiv',
+                    'formattedAddress' => 'Tarasa Shevchenko Blvd, 18, Kyiv, Ukraine, 02000',
                     'country' => 'Ukraine',
                     'rawAddress' => 'Tarasa Shevchenko Blvd, 18, Kyiv, Ukraine, 02000',
                     'postalCode' => null,
